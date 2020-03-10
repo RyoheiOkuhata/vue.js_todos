@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>TODO LIST</title>
+  <link rel="stylesheet" href="dist/css/app.css">
+  <script src="https://use.fontawesome.com/e3ae05b8e6.js"></script>
+  <style>
+    .done{
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+
+  <main id="app">
+    <h3>{{message}}</h3>
+    <!-- v-onの省略-->
+    <form @submit.prevent="addTodo" class="form">
+      <label for="newTodo" class="title">New Todo</label>
+       <!-- 双方向データバインディング-->
+      <input v-model="newTodo" type="text" name="NewTodo" id="NewTodo">
+      <button type="submit" class="add">add</button>
+    </form>
+ 
+
+
+  <div class="list">
+    <button @click="allDone" class="">allDone</button>
+    <ul>
+      <li v-for="todo in todos">
+         <!-- 双方向データバインディング-->
+        <input type="checkbox" v-model="todo.done" class="check">
+      <!-- v-bind (属性に値を渡す)は:という省略記号で書ける-->
+       <!-- todo.doneはv-model-->  
+      <span :class="{done:todo.done}">{{todo.title}}</span>
+      <button @click="removeTodo(todo)" type="button" class="remove" >remove</button>
+      </li>
+    </ul>
+  </div>
+
+  </main>
+
+
+
+<script src="dist/js/bundle.js"></script>
+</body>
+</html>
